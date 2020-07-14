@@ -1,0 +1,315 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper{
+  display:flex;
+  overflow: hidden;
+}
+
+.sidebar{
+  width:300px;
+  height:100vh;
+  background-color: #253141;
+  padding-top:5px;
+  border-radius: 2px;
+  border-right:solid 1px gray;
+  &__user{
+    height:100px;
+    width:96%;
+    margin: 0 auto;
+    display:flex;
+    align-items: center;
+    border-bottom:solid 1px white;
+    margin-bottom:10px;
+    &__image{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      margin:0 5px;
+      background-color: gray;
+      border: solid 2px #fafafa;
+    }
+    &__name{
+      width:150px;
+      font-weight:bold;
+      font-size:24px;
+      padding-left:5px;
+      letter-spacing: 2px;
+      color:white;
+    }
+    &__icon{
+      width:40px;
+      height:40px;
+      border:solid 1px white;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left:20px;
+      &--bars{
+        color:white;
+        font-size:24px;
+      }
+    }
+  }
+  &__config{
+    border:solid 1px white;
+    width:95%;
+    height:100px;
+    margin: 10px auto;
+    border-radius: 5px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+    &__group{
+      border:solid 1px #253141;
+      width:40%;
+      height:90%;
+      border-radius: 20px;
+      color:white;
+      text-align: center;
+      padding-top:10px;
+      &--icon{
+        font-size: 40px;
+      }
+      p{
+        font-size:10px;
+        padding-top:10px
+      }
+    }
+    &__user{
+      border:solid 1px #253141;
+      width:40%;
+      height:90%;
+      border-radius: 20px;
+      color:white;
+      text-align: center;
+      padding-top:10px;
+      &--icon{
+        font-size:40px;
+      }
+      p{
+        font-size:10px;
+        padding-top:10px;
+      }
+    }
+  }
+  &__grouplist{
+    width:95%;
+    height:calc(100% - 100px);
+    margin:0 auto;
+    overflow: scroll;
+    &__content{
+      background-color: white;
+      color:#253141;
+      height:100px;
+      border-radius: 30px;
+      margin-bottom:10px;
+      &:hover{
+        opacity: 0.8;
+      }
+      &__name{
+        padding:2px;
+        text-align:center;
+        font-weight:bold;
+        border-bottom:solid 1px #253141;
+      }
+      &__message{
+        padding:10px;
+        font-size:14px;
+      }
+    }
+  }
+}
+
+.mainchat{
+  width:calc(100vw - 300px);
+  height:100vh;
+  background-color: #ffffff;
+  &__info{
+    height:105px;
+    width:100%;
+    background-color: #ffffff;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 20px;
+    &__left{
+      display: flex;
+      align-items: center;
+      p{
+      font-weight:bold;
+      font-size:30px;
+      }
+      &__membercount{
+        width:30px;
+        height:30px;
+        background-color: skyblue;
+        border-radius: 50%;
+        p{
+          color:white;
+          font-size:12px;
+          line-height: 30px;
+          text-align: center;
+        }
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+    }
+    &__right{
+      width:90px;
+      height:50px;
+      background-color: skyblue;
+      border-radius: 5px;
+      p{
+        text-align: center;
+        line-height: 50px;
+        color: white;
+      }
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+  }
+  &__members{
+    height:60px;
+    width:100%;
+    background-color: #253141;
+    display:flex;
+    align-items: center;
+    padding:0 5px;
+    overflow-x: scroll;
+    // display:none;
+    &__member{
+      border:solid 1px white;
+      border-radius: 2px;
+      width:100px;
+      height:50px;
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      padding:0 5px;
+      margin-right:5px;
+      &:hover{
+        opacity: 0.8;
+      }
+      &__image{
+        height:30px;
+        width:30px;
+        background-color: gray;
+        border-radius: 50%;
+        border:solid 1px white;
+        margin-right: 4px;
+      }
+      &__name{
+        color:white;
+        font-size:10px;
+        width:50px;
+      }
+    }
+  }
+  &__messagelist{
+    height:calc(100vh - 165px);
+    width:100%;
+    background-color: #fafafa;
+    padding-left:40px;
+    padding-top:35px;
+    overflow: scroll;
+    position:relative;
+    &__message{
+      background-color:skyblue;
+      height:150px;
+      width:50%;
+      border-radius: 10px;
+      padding:10px;
+      margin-bottom:10px;        
+      &__info{
+        display:flex;
+        &__user{
+          color:#333333;
+          font-weight:bold;
+          font-size:16px;            
+          padding-right:10px;
+          letter-spacing: 5px;
+        }
+        &__time{
+          color:#999999;
+          font-size:12px;
+          padding-top:5px; 
+        }
+      }
+      &__content{
+        color:#434A54;
+        font-size:14px;          
+        padding-top:10px;
+        padding-left:20px;
+      } 
+    }
+  }
+
+    .form{
+      padding-top:380px;
+      position:absolute;
+      right:0;
+      top:0;
+      height:100%;
+      width:40%;
+      background-color: #d2d2d2;
+      border:solid 1px black;
+      textarea{
+        display:block;
+        width:80%;
+        height:150px;
+        border:none;
+        padding:10px;
+        margin:0 auto;
+        margin-bottom:10px;
+      }
+      &__bottom{
+        display: flex;
+        margin-right:45px;
+        align-items: center;
+        justify-content: flex-end;
+        &__image{
+          input[type=file]{
+            display:none;
+          }
+          .fa-image{
+            font-size:26px;
+            line-height:50px ;
+            text-align: center;
+            display:inline-block;
+            background-color: white;
+            height:50px;
+            width:50px;
+            border-radius: 50%;
+            border:solid 2px gray;
+            margin-right:10px;
+            &:hover{
+              opacity:0.7;
+            }
+          }
+        }
+        input[type=submit]{
+          border:none;
+          display:block;
+          width:100px;
+          height:50px;
+          background-color:#253141;
+          color:white;
+          &:hover{
+            opacity:0.8;
+          }
+        }
+        
+      }
+    }
+}
+
+
+  
+    
+    
