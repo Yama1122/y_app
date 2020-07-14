@@ -1,24 +1,49 @@
-# README
+# データベース設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+|number|integer|null:false,uniqueness:true|
+|password|string|null:false,uniqueness:true|
+|password-confirmation|string|null:false,uniqueness:true|
 
-Things you may want to cover:
+## Groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
 
-* Ruby version
+## Groups_usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|group_id|integer|foreign_key:true,null:false|
+|user_id|integer|foreign_key:true,null:false|
 
-* System dependencies
+## Messagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|content|string||
+|image|string||
+|movie|blob||
+|user_id|integer|foreign_key:true,null:false|
+|group_id|integer|foreign_key:true,null:false|
 
-* Configuration
+## Postsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|content|string||
+|image|string||
+|movie|blob||
+|user_id|integer|foreign_key:true,null:false|
 
-* Database creation
+## Likeテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|foreign_key:true,null:false|
+|post_id|integer|foreign_key:true,null:false|
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Relationshipテーブル
+|Column|Type|Options|
+|------|----|-------|
+|follower_id|integer|foreign_key:true|
+|following_id|integer|foreign_key:true|
