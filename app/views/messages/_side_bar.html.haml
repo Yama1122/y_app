@@ -2,7 +2,7 @@
   .sidebar__user
     .sidebar__user__image
     .sidebar__user__name
-      %p 山下雄平
+      = current_user.name
     .sidebar__user__icon
       = icon('fas','bars',class:"sidebar__user__icon--bars")
 
@@ -11,8 +11,9 @@
       = icon('fas','users',class:"sidebar__config__group--icon")
       %p 新規グループの作成
     .sidebar__config__user
-      = icon('far','edit',class:"sidebar__config__user--icon")
-      %p ユーザー情報の更新
+      = link_to edit_user_path(current_user) do
+        = icon('far','edit',class:"sidebar__config__user--icon")
+        %p ユーザー情報の更新
   .sidebar__grouplist
     .sidebar__grouplist__content
       .sidebar__grouplist__content__name
