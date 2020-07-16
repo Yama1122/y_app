@@ -8,46 +8,21 @@
 
   .sidebar__config
     .sidebar__config__group
-      = icon('fas','users',class:"sidebar__config__group--icon")
-      %p 新規グループの作成
+      = link_to new_group_path do
+        = icon('fas','users',class:"sidebar__config__group--icon")
+        %p 新規グループの作成
     .sidebar__config__user
       = link_to edit_user_path(current_user) do
         = icon('far','edit',class:"sidebar__config__user--icon")
         %p ユーザー情報の更新
+
   .sidebar__grouplist
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
+    - current_user.groups.each do |group|
+      = link_to '#' do
+        .sidebar__grouplist__content
+          .sidebar__grouplist__content__name
+            = group.name
+          .sidebar__grouplist__content__message
+            %p メッセージがありません
 
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
 
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
-
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
-
-    
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
-
-    .sidebar__grouplist__content
-      .sidebar__grouplist__content__name
-        %p グループ名
-      .sidebar__grouplist__content__message
-        %p メッセージがありません
