@@ -199,11 +199,11 @@
     height:60px;
     width:100%;
     background-color: #253141;
-    display:flex;
     align-items: center;
     padding:0 5px;
     overflow-x: scroll;
-    // display:none;
+    display: flex;
+    display:none;
     &__member{
       border:solid 1px white;
       border-radius: 2px;
