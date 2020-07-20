@@ -1,6 +1,7 @@
 .sidebar
   .sidebar__user
     .sidebar__user__image
+      = image_tag current_user.image.url,class:"sidebar__user__image--icon"
     .sidebar__user__name
       = current_user.name
     .sidebar__user__icon
@@ -18,11 +19,21 @@
 
   .sidebar__grouplist
     - current_user.groups.each do |group|
-      = link_to '#' do
+      = link_to group_messages_path(group) do
         .sidebar__grouplist__content
           .sidebar__grouplist__content__name
             = group.name
           .sidebar__grouplist__content__message
-            %p メッセージがありません
+            = group.show_last_message
+
+  -# .form
+  -#   = form_with model: [@group, @message], local: true,id:"form" do |f|
+  -#     .form__wrapper
+  -#       = f.text_area :content,placeholder:'type a message',class:"form__wrapper--textarea"
+  -#       .form__wrapper__bottom
+  -#         = f.label :image,class:"form__wrapper__bottom__image" do
+  -#           = icon('fas', 'image')
+  -#           = f.file_field:image
+  -#         = f.submit "SEND",class:"form__wrapper__bottom__submit"
 
 

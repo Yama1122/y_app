@@ -2,65 +2,41 @@
   .mainchat__info
     .mainchat__info__left
       .mainchat__info__left__groupname
-        %p グループ１ 
+        %p
+          = @group.name   
       .mainchat__info__left__membercount
-        %p 3
+        %p
+          = @group.users.count
     .mainchat__info__right
-      %p EDIT
+      = link_to edit_group_path(@group) do
+        %p
+          EDIT
 
   
   .mainchat__members
     .mainchat__members__member
       .mainchat__members__member__image
+        = image_tag current_user.image.url,class:"mainchat__members__member__image--icon"
       .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
-
-    .mainchat__members__member
-      .mainchat__members__member__image
-      .mainchat__members__member__name
-        %p 山下雄平
+        = current_user.name
+        
+    - @group.users.where.not(id:current_user.id).each do |user|
+      .mainchat__members__member
+        .mainchat__members__member__image
+          = image_tag user.image.url,class:"mainchat__members__member__image--icon"
+        .mainchat__members__member__name 
+          = user.name
 
   .mainchat__messagelist
-    .mainchat__messagelist__message
-      .mainchat__messagelist__message__info         
-        .mainchat__messagelist__message__info__user            
-          %p 山下雄平
-        .mainchat__messagelist__message__info__time
-          %p 2020/7/14(thu) 15:02:00
-      .mainchat__messagelist__message__content
-        %p おはよう！
-    
+    = render partial: 'message', collection: @messages
+
+
     .form
-      %textarea{placeholder:"テキストを入力してください"}
-      .form__bottom
-        %label{class: "form__bottom__image"}
-          = icon('fas', 'image')
-          %input{type: "file"}
-        %input{type:"submit",value:"SEND"}
-        
-     
+      = form_with model: [@group, @message], local: true,id:"form" do |f|
+        .form__wrapper
+          = f.text_area :content,placeholder:'type a message',class:"form__wrapper--textarea"
+          .form__wrapper__bottom
+            = f.label :image,class:"form__wrapper__bottom__image" do
+              = icon('fas', 'image')
+              = f.file_field:image
+            = f.submit "SEND",class:"form__wrapper__bottom__submit"
