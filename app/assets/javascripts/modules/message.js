@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     if(message.image){
       let html =
-        `<div class="mainchat__messagelist__message">
+        `<div class="mainchat__messagelist__message" data-message-id=${message.id}>
           <div class="mainchat__messagelist__message__info">
             <div class="mainchat__messagelist__message__info__user">
               ${message.user_name}
@@ -21,7 +21,7 @@ $(function(){
       return html;
     }else{
       let html =
-        `<div class="mainchat__messagelist__message">
+        `<div class="mainchat__messagelist__message" data-message-id=${message.id}>
           <div class="mainchat__messagelist__message__info">
             <div class="mainchat__messagelist__message__info__user">
               ${message.user_name}
@@ -39,7 +39,8 @@ $(function(){
         return html;
     };
   }
-  $(".sidebar__user__icon--bars").on("click", function(){
+
+  $(".sidebar__user__icon").on("click", function(){
     $(".sidebar__config").slideToggle();
     $(".sidebar__config").css("display","flex");
   });

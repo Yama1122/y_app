@@ -1,0 +1,60 @@
+.header
+  .header__form
+    %input{type:"text",class:"header__form--text",placeholder:"投稿を検索する"}
+    %label{class:"header__form--icon",for:"search-btn"}
+      = icon("fas","search",id:"search-btn")
+      %input{type:"submit",class:"header__form--btn",id:"search-btn"}
+  .header__user
+    .header__user__image
+    .header__user__name
+      %p 山下雄平
+  
+
+.main
+  .main__container
+    .main__container__content
+      .main__container__content__header
+        .main__container__content__header__user
+          .main__container__content__header__user__image
+          .main__container__content__header__user__name
+            %p 山下雄平
+        .main__container__content__header__follow
+          %p
+            = icon("fas","plus")
+            フォローする
+      .main__container__content__main
+
+      .main__container__content__footer
+        .main__container__content__footer__left
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              共有  
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              報告したいこと！  
+
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              報告したいこと！  
+
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              報告したいこと！  
+
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              報告したいこと！  
+
+          .main__container__content__footer__left__tag
+            %p 
+              = icon("fas","times-circle")
+              報告したいこと！  
+        .main__container__content__footer__right
+          = icon("fas","heart",class:"main__container__content__footer__right--heart")
+          = icon("far","comment-alt",class:"main__container__content__footer__right--comment")
+
