@@ -1,7 +1,8 @@
 .sidebar
   .sidebar__user
     .sidebar__user__image
-      = image_tag current_user.image.url,class:"sidebar__user__image--icon"
+      = link_to edit_user_path(current_user) do
+        = image_tag current_user.image.url,class:"sidebar__user__image--icon"
     .sidebar__user__name
       = current_user.name
     .sidebar__user__icon
@@ -13,9 +14,16 @@
         = icon('fas','users',class:"sidebar__config__group--icon")
         %p 新規グループの作成
     .sidebar__config__user
-      = link_to edit_user_path(current_user) do
-        = icon('far','edit',class:"sidebar__config__user--icon")
-        %p ユーザー情報の更新
+      -# = link_to edit_user_path(current_user) do
+      = link_to users_path do
+        = icon('far','address-book',class:"sidebar__config__user--icon")
+        %p ユーザー一覧へ
+
+    .sidebar__config__user
+      = link_to tweets_path do
+        = icon('far','comment',class:"sidebar__config__user--icon")
+        %p 記事投稿
+  
 
   .sidebar__grouplist
     - current_user.groups.each do |group|

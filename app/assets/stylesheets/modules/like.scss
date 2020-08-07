@@ -1,0 +1,16 @@
+.like__link{
+  // display: flex;
+  &__container{
+    display: flex;
+    &__good{
+      padding-right:5px;
+      font-size:24px;
+      a{
+        text-decoration: none;
+      }
+    }
+    &__count{
+      font-size: 14px;
+    }
+  }
+}

@@ -1,60 +1,77 @@
 .header
-  .header__form
-    %input{type:"text",class:"header__form--text",placeholder:"投稿を検索する"}
-    %label{class:"header__form--icon",for:"search-btn"}
-      = icon("fas","search",id:"search-btn")
-      %input{type:"submit",class:"header__form--btn",id:"search-btn"}
+  -# .header__form
+  -#   %input{type:"text",class:"header__form--text",placeholder:"投稿を検索する"}
+  -#   %label{class:"header__form--icon",for:"search-btn"}
+  -#     = icon("fas","search",id:"search-btn")
+  -#     %input{type:"submit",class:"header__form--btn",id:"search-btn"}
+  .header__return
+    = link_to "戻る",groups_path
   .header__user
     .header__user__image
+      = image_tag current_user.image.url,class:"header__user__image--icon"
     .header__user__name
-      %p 山下雄平
+      = current_user.name
+   
   
 
 .main
+  .main__tweet
+    = icon("fas","pen")
   .main__container
-    .main__container__content
-      .main__container__content__header
-        .main__container__content__header__user
-          .main__container__content__header__user__image
-          .main__container__content__header__user__name
-            %p 山下雄平
-        .main__container__content__header__follow
-          %p
-            = icon("fas","plus")
-            フォローする
-      .main__container__content__main
+    - @tweets.each.with_index do |tweet,i|  
+      .main__container__content
+        .main__container__content__header
+          = link_to user_path(tweet.user) do
+            .main__container__content__header__user
+              .main__container__content__header__user__image
+                = image_tag tweet.user.image.url,class:"main__container__content__header__user__image--icon"
+              .main__container__content__header__user__name
+                = tweet.user.name
+              - if current_user.following?(tweet.user) && tweet.user.following?(current_user)
+                .main__container__content__header__user__name
+                  = icon("far","star")
+            .main__container__content__header__follow
+              - if current_user.following?(tweet.user)
+                = link_to unfollow_path(tweet.user.id),method: :POST do
+                  %p 
+                    = icon("fas","minus-circle")
+                    フォロー解除
+              - else
+                = link_to follow_path(tweet.user.id),method: :POST do
+                  %p
+                    = icon("fas","plus")
+                    フォローする
+        = link_to tweet_path(tweet.id) do          
+          .main__container__content__main
+            .main__container__content__main--image
+              = image_tag tweet.image.url,class:"main__container__content__main--image--icon" if tweet.image.present?
+              .main__container__content__main--image--text
+                %p
+                  = tweet.text
+        .main__container__content__footer
+          .main__container__content__footer__left
+            -# .main__container__content__footer__left__tag
+            -#   %p 
+            -#     = icon("fas","times-circle")
+            -#     共有  
+          .main__container__content__footer__right
+            .main__container__content__footer__right--heartbox
+              .like-link{id:"like-link-#{tweet.id}"}
+                = render "likes/like_links",tweet:tweet
+              = link_to tweet_path(tweet.id) do
+                = icon("far","comment-alt",class:"main__container__content__footer__right--comment")
+              .main__container__content__footer__right--commentcount
+                = tweet.comments.count
 
-      .main__container__content__footer
-        .main__container__content__footer__left
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              共有  
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              報告したいこと！  
-
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              報告したいこと！  
-
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              報告したいこと！  
-
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              報告したいこと！  
-
-          .main__container__content__footer__left__tag
-            %p 
-              = icon("fas","times-circle")
-              報告したいこと！  
-        .main__container__content__footer__right
-          = icon("fas","heart",class:"main__container__content__footer__right--heart")
-          = icon("far","comment-alt",class:"main__container__content__footer__right--comment")
-
+.TweetForm
+  .TweetForm__container
+    .TweetForm__container__header
+      %p 投稿画面
+      = icon("far","times-circle",class:"TweetForm__container__header--icon")
+    = form_with model:@tweet,local:true,class:"TweetForm__container__form" do |f|
+      -# = f.text_field:name,class:"TweetForm__container__form--name",placeholder:"Title"
+      = f.text_area:text,class:"TweetForm__container__form--text",placeholder:"テキストを入力してください"
+      = f.label :image,class:"TweetForm__container__form--image" do
+        = icon('fas', 'image')
+        = f.file_field:image
+      = f.submit "SEND",class:"TweetForm__container__form--btn"

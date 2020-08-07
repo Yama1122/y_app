@@ -1,0 +1,51 @@
+.header
+  .header__return
+    = link_to "投稿一覧へ", tweets_path
+  .header__user
+    .header__user__image
+      = image_tag current_user.image.url,class:"header__user__image--icon"
+    .header__user__name
+      = current_user.name
+  
+.show-container
+
+  .main
+    .main__container
+      .main__container__content
+        .main__container__content__header
+          .main__container__content__header__user
+            .main__container__content__header__user__image
+              = image_tag @tweet.user.image.url,class:"main__container__content__header__user__image--icon"
+            .main__container__content__header__user__name
+              = @tweet.user.name
+          - if current_user.following?(@tweet.user)
+            .main__container__content__header__follow--show
+              %p フォロー中のユーザー
+            
+        .main__container__content__main
+          .main__container__content__main--image
+            = image_tag @tweet.image.url,class:"main__container__content__main--image--icon" if @tweet.image.present?
+            .main__container__content__main--image--text
+              %p
+                = @tweet.text
+        .main__container__content__footer
+          .main__container__content__footer__left
+            -# .main__container__content__footer__left__tag
+            -#   %p 
+            -#     = icon("fas","times-circle")
+            -#     共有  
+
+  .commentform
+    .commentform__container
+      %p〈コメント一覧〉
+      .commentform__container__index
+        - @comments.each do |comment|
+          .commentform__container__index__content
+            .commentform__container__index__content__user
+              = comment.user.name 
+            .commentform__container__index__content__comment
+              = comment.text
+      = form_with model:[@tweet,@comment],local:true do |f|
+        = f.text_area :text,placeholder:"コメントを入力してください",rows:"2",class:"commentform__container__text"
+        = f.submit "送信",class:"commentform__container__btn"
+        

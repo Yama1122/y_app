@@ -1,0 +1,17 @@
+
+-# - if current_user.likes.find_by(tweet_id:tweet.id)
+- if Like.find_by(tweet_id:tweet.id)
+  .like__link__container__good
+    = link_to unlike_path(tweet.id),method: :delete,class:"like__link__container",remote:true do
+      = icon("fas","heart",class:"main__container__content__footer__right--heartbox--heart")
+      -# .like__link__container__count
+      -#   = tweet.likes_count.to_s
+- else
+  .like__link__container__good
+    = link_to like_path(tweet.id),method: :post,class:"like__link__container",remote:true do
+      = icon("far","heart",class:"main__container__content__footer__right--heartbox--heart")
+      -# .like__link__container__count
+      -#   = tweet.likes_count.to_s
+  
+    
+    

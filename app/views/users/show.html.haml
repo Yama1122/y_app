@@ -1,0 +1,60 @@
+.header
+  -# .header__return
+  -#   = link_to "投稿一覧へ", tweets_path
+  .header__return
+    = link_to "戻る",:back
+  .header__user
+    .header__user__image
+      = image_tag current_user.image.url,class:"header__user__image--icon"
+    .header__user__name
+      = current_user.name
+
+.userdetail
+  .userdetail__container
+    .userdetail__container__header
+      .userdetail__container__header__user
+        .userdetail__container__header__user--image
+          = image_tag @user.image.url,class:"userdetail__container__header__user--image--icon"
+        .userdetail__container__header__user--name
+          = @user.name
+        - if current_user.following?(@user) && @user.following?(current_user)
+          .main__container__content__header__user__name
+            = icon("far","star")
+      - if current_user.following?(@user)
+        .userdetail__container__header__follow
+          %p フォロー中のユーザー
+    .userdetail__container__index
+      .userdetail__container__index__tweet
+        .userdetail__container__index__tweet__title
+          = icon("fas","pen")
+          %p 投稿一覧
+        .userdetail__container__index__tweet__content 
+          - @user.tweets.each do |tweet|
+            = link_to tweet_path(tweet) do
+              .userdetail__container__index__tweet__content--post
+                .userdetail__container__index__tweet__content--post--date
+                  = tweet.created_at.strftime("%Y年%m月%d日")
+                .userdetail__container__index__tweet__content--post--contain   
+                  .userdetail__container__index__tweet__content--post--contain--text
+                    = tweet.text
+                  .userdetail__container__index__tweet__content--post--contain--image
+                    = image_tag tweet.image.url,class:"userdetail__container__index__tweet__content--post--contain--image--icon" if tweet.image.present?
+                
+      .userdetail__container__index__like
+        .userdetail__container__index__like__title
+          = icon("fas","heart")
+          %p いいね一覧
+        .userdetail__container__index__like__content
+          - current_user.like_tweets.each do |tweet|
+            = link_to tweet_path(tweet) do
+              .userdetail__container__index__like__content__post
+                .userdetail__container__index__like__content__post__user
+                  .userdetail__container__index__like__content__post__user__image
+                    = image_tag tweet.user.image.url,class:"main__container__content__header__user__image--icon"
+                  .userdetail__container__index__like__content__post__user__name
+                    = tweet.user.name
+                .userdetail__container__index__like__content__post__contain
+                  .userdetail__container__index__like__content__post__contain--text
+                    = tweet.text
+                  .userdetail__container__index__like__content__post__contain--image
+                    = image_tag tweet.image.url,class:"userdetail__container__index__tweet__content--post--contain--image--icon" if tweet.image.present? 

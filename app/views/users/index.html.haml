@@ -1,0 +1,64 @@
+.header
+  -# .header__form
+  -#   %input{type:"text",class:"header__form--text",placeholder:"投稿を検索する"}
+  -#   %label{class:"header__form--icon",for:"search-btn"}
+  -#     = icon("fas","search",id:"search-btn")
+  -#     %input{type:"submit",class:"header__form--btn",id:"search-btn"}
+  .header__return
+    = link_to "戻る",groups_path
+  .header__user
+    .header__user__image
+      = image_tag current_user.image.url,class:"header__user__image--icon"
+    .header__user__name
+      = current_user.name
+
+.userlist
+  .userlist__container
+    .userlist__container__header
+      %p ユーザー 一覧
+    
+    .userlist__container__list__eachfollow
+      -# .userlist__container__list__eachfollow__title
+      -#   %p 相互フォローユーザー
+      
+      .userlist__container__list__eachfollow__content
+        - @users.each do |user|
+          = link_to user_path(user) do
+            .userlist__container__list__eachfollow__content__user
+              .userlist__container__list__eachfollow__content__user__image
+                = image_tag user.image.url,class:"header__user__image--icon"
+              .userlist__container__list__eachfollow__content__user__name
+                = user.name
+              .userlist__container__list__eachfollow__content__follow
+                - if user != current_user
+                  - if current_user.following?(user) && user.following?(current_user)
+                    %p 相互フォロー中
+
+                -# - if current_user.following?(user) 
+                  -# = link_to unfollow_path(user.id),method: :POST do
+                  -#   %p 
+                  -#     = icon("fas","minus-circle")
+                  -#     フォロー解除
+                -# - else
+                -#   = link_to follow_path(user.id),method: :POST do
+                -#     %p
+                -#       = icon("fas","plus")
+                -#       フォローする
+
+      -# .userlist__container__list__followed
+      -#   .userlist__container__list__followed__title
+      -#     %p フォローされています
+      -#   .userlist__container__list__followed__content
+      -#     .userlist__container__list__followed__content__user
+      -#     .userlist__container__list__followed__content__follow
+
+
+      -# .userlist__container__list__following
+      -# .userlist__container__list__following__title
+      -#   %p  フォロー申請済み
+      -# .userlist__container__list__following__content
+      -#   .userlist__container__list__following__content__user
+      -#   .userlist__container__list__following__content__follow
+
+      
+

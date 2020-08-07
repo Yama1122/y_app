@@ -21,14 +21,15 @@
         = current_user.name
         
     - @group.users.where.not(id:current_user.id).each do |user|
-      .mainchat__members__member
-        .mainchat__members__member__image
-          = image_tag user.image.url,class:"mainchat__members__member__image--icon"
-        .mainchat__members__member__name 
-          = user.name
+      = link_to user_path(user) do
+        .mainchat__members__member
+          .mainchat__members__member__image
+            = image_tag user.image.url,class:"mainchat__members__member__image--icon"
+          .mainchat__members__member__name 
+            = user.name
 
   .mainchat__messagelist
-    = render partial: 'message', collection: @messages
+    = render partial:'message', collection: @messages
 
 
     .form
