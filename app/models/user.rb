@@ -31,6 +31,10 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+  # def machers
+  #   following_user && follower_user
+  # end
+
   # def already_liked?(post)
   #   likes.exists?(post_id:post.id)
   # end
