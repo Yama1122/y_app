@@ -35,9 +35,10 @@ $(function(){
               ${message.content}
             </p>
           </div>
-        </div>`
+       </div>`
         return html;
     };
+  
   }
 
   let reloadMessages = function(){
