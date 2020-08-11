@@ -12,5 +12,6 @@ $(function(){
     })
     .fail(function() {
       console.log("失敗です");
+    });  
   });
 });
