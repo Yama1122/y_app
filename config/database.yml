@@ -51,12 +51,12 @@ production:
 
 
   <<: *default
-  # database: y_app_production
+  database: y_app_production
   # username: y_app
   # password: <%= ENV['Y_APP_DATABASE_PASSWORD'] %>
-  # username: root
-  # password: <%= ENV['DATABASE_PASSWORD'] %>
-  # socket: /var/lib/mysql/mysql.sock
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+  # adapter: postgresql
+  # encoding: unicode
+  # pool: 5
