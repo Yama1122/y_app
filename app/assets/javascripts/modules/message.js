@@ -41,6 +41,7 @@ $(function(){
   }
 
   $(".sidebar__user__icon").on("click", function(){
+    console.log("Success");
     $(".sidebar__config").slideToggle();
     $(".sidebar__config").css("display","flex");
   });
